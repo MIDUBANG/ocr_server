@@ -1,46 +1,47 @@
-version: '3.7'
-
-services:
-  nginx:
-    # build: ./nginx
-    image: nginx:1.21.5-alpine
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    container_name: midubang-nginx
-    depends_on:
-    #   - web
-      - flask
-#   web:
-#     image: frontend-web:latest
-#     ports:
-#       - 3000:3000
-#     container_name: myweb-web
-  flask:
-    build: ./flask
-    # image: backend-api:latest
-    # ports:
-    #   - 5000:5000
-    expose: 
-        - 5000
-    container_name: midubang-flask
-
-
+# version: '3.7'
 
 # services:
-#     flask:
-#         build: ./flask
-#         container_name: flask
-#         restart: always
-#         environment:
-#             - APP_NAME=OCRSERVER
-#         expose:
-#             - 5000
+#   nginx:
+#     build: ./nginx
+#     #image: nginx:1.21.5-alpine
+#     ports:
+#       - 80:80
+#     volumes:
+#       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#     container_name: midubang-nginx
+#     depends_on:
+#     #   - web
+#       - flask
+# #   web:
+# #     image: frontend-web:latest
+# #     ports:
+# #       - 3000:3000
+# #     container_name: myweb-web
+#   flask:
+#     build: ./flask
+#     # image: backend-api:latest
+#     # ports:
+#     #   - 5000:5000
+#     expose: 
+#         - 5000
+#     container_name: midubang-flask
 
-#     nginx:
-#         build: ./nginx
-#         container_name: nginx
-#         restart: always
-#         ports:
-#             - "80:80"
+
+version: "3.7"
+
+services: 
+    flask:
+        build: ./flask
+        container_name: midubang-flask
+        restart: always
+        environment: 
+            - APP_NAME=FLASKSERVER
+        expose:
+            - 5050
+
+    nginx:
+        build: ./nginx
+        container_name: midubang-nginx
+        restart: always
+        ports:
+            - "80:80"
